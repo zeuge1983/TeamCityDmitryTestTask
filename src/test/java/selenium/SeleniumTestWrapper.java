@@ -19,7 +19,7 @@ import static org.junit.Assume.assumeTrue;
 public abstract class SeleniumTestWrapper {
 
 	// Config
-	protected static final TestConfig testConfig = new TestConfig();
+//	protected static final TestConfig testConfig = new TestConfig();
 	private final WebDriverConfig webDriverConfig = new WebDriverConfig();
 	protected final WebDriverProvider webDriverProvider = new WebDriverProvider(this.webDriverConfig);
 
@@ -46,27 +46,27 @@ public abstract class SeleniumTestWrapper {
 		}
 	}
 
-	@Before
-	public void browser() throws Exception {
-		Browser browser = this.getClass().getAnnotation(Browser.class);
-		if (browser != null){
-			if (browser.require().length > 0 && browser.skip().length == 0){
-				String browsers = concatinateBrowsers(browser.require());
-				assumeTrue("only execute test against " + browsers, browsers.contains(testConfig.getBrowser()));
-			}
+//	@Before
+//	public void browser() throws Exception {
+//		Browser browser = this.getClass().getAnnotation(Browser.class);
+//		if (browser != null){
+//			if (browser.require().length > 0 && browser.skip().length == 0){
+//				String browsers = concatinateBrowsers(browser.require());
+//				assumeTrue("only execute test against " + browsers, browsers.contains(testConfig.getBrowser()));
+//			}
+//
+//			if (browser.skip().length > 0 && browser.require().length == 0){
+//				String browsers = concatinateBrowsers(browser.skip());
+//				assumeFalse("skip test against " + browsers, browsers.contains(testConfig.getBrowser()));
+//			}
+//		}
+//	}
 
-			if (browser.skip().length > 0 && browser.require().length == 0){
-				String browsers = concatinateBrowsers(browser.skip());
-				assumeFalse("skip test against " + browsers, browsers.contains(testConfig.getBrowser()));
-			}
-		}
-	}
-
-	private String concatinateBrowsers(Browsers[] browsers){
-		String concatinatedBrowsers = "";
-		for(Browsers browser : browsers) concatinatedBrowsers += browser.getValue() + " & ";
-		return concatinatedBrowsers.substring(0,concatinatedBrowsers.lastIndexOf("&"));
-	}
+//	private String concatinateBrowsers(Browsers[] browsers){
+//		String concatinatedBrowsers = "";
+//		for(Browsers browser : browsers) concatinatedBrowsers += browser.getValue() + " & ";
+//		return concatinatedBrowsers.substring(0,concatinatedBrowsers.lastIndexOf("&"));
+//	}
 
 	@Before
 	public void browserDimension(){

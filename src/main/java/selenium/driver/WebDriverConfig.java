@@ -8,12 +8,4 @@ public class WebDriverConfig {
 	String getBrowserName() {
         return typedProperties.getValue("browser.name");
 	}
-
-	int getImplicitlyWait() {
-        return typedProperties.getInt("implicitly_wait");
-	}
-
-	int getDomMaxScriptRunTime() {
-        return typedProperties.getInt("dom.max_script_run_time");
-	}
 }

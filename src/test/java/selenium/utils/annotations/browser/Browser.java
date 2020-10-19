@@ -8,8 +8,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.TYPE })
 public @interface Browser {
-
     Browsers[] require() default {};
-
     Browsers[] skip() default {};
 }

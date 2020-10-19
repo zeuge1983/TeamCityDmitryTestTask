@@ -26,11 +26,11 @@ public class TypedProperties {
 		return properties.getProperty(key);
 	}
 
-	public boolean getBoolean(final String key) {
-		return parseBoolean(getValue(key));
-	}
-
-	public int getInt(final String key) {
-		return parseInt(getValue(key));
-	}
+//	public boolean getBoolean(final String key) {
+//		return parseBoolean(getValue(key));
+//	}
+//
+//	public int getInt(final String key) {
+//		return parseInt(getValue(key));
+//	}
 }

@@ -43,7 +43,7 @@
 //    @TmsLink("123123")
 //    public void addCustomCookie() {
 //        // skip if browser is phantomjs
-//        assumeFalse(testConfig.getBrowser().equals("phantomjs"));
+////        assumeFalse(testConfig.getBrowser().equals("phantomjs"));
 //
 //        cookies.addCookie("myTestCookie", "added by selenium","github.com", "/", cookies.getValideExpireDate());
 //        // check if custom cookie has been added successfully
