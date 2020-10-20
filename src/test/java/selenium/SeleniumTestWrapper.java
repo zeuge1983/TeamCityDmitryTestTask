@@ -15,7 +15,6 @@ import selenium.utils.annotations.browser.Browsers;
 import static org.junit.Assume.assumeFalse;
 import static org.junit.Assume.assumeTrue;
 
-
 public abstract class SeleniumTestWrapper {
 
 	// Config
@@ -46,34 +45,9 @@ public abstract class SeleniumTestWrapper {
 		}
 	}
 
-//	@Before
-//	public void browser() throws Exception {
-//		Browser browser = this.getClass().getAnnotation(Browser.class);
-//		if (browser != null){
-//			if (browser.require().length > 0 && browser.skip().length == 0){
-//				String browsers = concatinateBrowsers(browser.require());
-//				assumeTrue("only execute test against " + browsers, browsers.contains(testConfig.getBrowser()));
-//			}
-//
-//			if (browser.skip().length > 0 && browser.require().length == 0){
-//				String browsers = concatinateBrowsers(browser.skip());
-//				assumeFalse("skip test against " + browsers, browsers.contains(testConfig.getBrowser()));
-//			}
-//		}
-//	}
-
-//	private String concatinateBrowsers(Browsers[] browsers){
-//		String concatinatedBrowsers = "";
-//		for(Browsers browser : browsers) concatinatedBrowsers += browser.getValue() + " & ";
-//		return concatinatedBrowsers.substring(0,concatinatedBrowsers.lastIndexOf("&"));
-//	}
-
 	@Before
 	public void browserDimension(){
-//		BrowserDimension browserDimension = this.getClass().getAnnotation(BrowserDimension.class);
-//		if (browserDimension != null) {
-			getDriver().manage().window().maximize();
-//		}
+		getDriver().manage().window().maximize();
 	}
 
 	@After

@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import selenium.SeleniumTestWrapper;
 import selenium.pageobjects.StartPage;
 
+import static selenium.configurations.User.ADMIN_USER;
 import static utils.TestUtils.sleep;
 
 @Epic("Test epic name")
@@ -33,7 +34,7 @@ public class LoginPageTest extends SeleniumTestWrapper {
     @TmsLink("123123")
     public void checkSomeValueFromCertainCookie() {
         startPage.checkThatLoginPageIsDisplayed();
-        startPage.logIn("DmitrySuperUser", "Shpinek1987");
+        startPage.logIn(ADMIN_USER.getUserName(), ADMIN_USER.getPassword());
         sleep(5000);
     }
 }

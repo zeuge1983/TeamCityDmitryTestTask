@@ -7,10 +7,6 @@ public class TestConfig {
     public TestConfig() {
     }
 
-//    TestConfig(final TypedProperties typedProperties) {
-//        this.typedProperties = typedProperties;
-//    }
-
     public String getBrowser() {
         return this.typedProperties.getValue("browser.name");
     }

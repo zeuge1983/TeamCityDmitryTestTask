@@ -150,16 +150,6 @@ public abstract class SeleniumFunctions {
 		mouseover(element);
 	}
 
-//	protected void waitAndMoveToElement(final WebElement element) {
-//		waitForElement(element);
-//		moveToElement(element);
-//	}
-//
-//	protected void waitAndMoveToElement(final By by) {
-//		waitForElement(by);
-//		moveToElement(by);
-//	}
-
 	protected void dragAndDrop(final By by, final int xOffset, final int yOffset) {
 		final WebElement ele = this.driver.findElement(by);
 		final Actions builder = new Actions(this.driver);
@@ -197,14 +187,6 @@ public abstract class SeleniumFunctions {
 		}
 	}
 
-//	protected boolean isReadonly(final By by) {
-//		return Boolean.parseBoolean(this.driver.findElement(by).getAttribute("readonly"));
-//	}
-//
-//	protected boolean isReadonly(final WebElement element) {
-//		return Boolean.parseBoolean(element.getAttribute("readonly"));
-//	}
-
 	protected Point getElementPosition(final WebElement element) {
 		return element.getLocation();
 	}
@@ -225,49 +207,6 @@ public abstract class SeleniumFunctions {
 			element.sendKeys(Keys.BACK_SPACE);
 		}
 	}
-
-//	protected void backSpaceInputClear(final WebElement element, final int numberOfCharacters) {
-//		for (int i = 0; i <= numberOfCharacters; i++) {
-//			element.sendKeys(Keys.BACK_SPACE);
-//		}
-//	}
-//
-//	public void scroll(final int x, final int y) {
-//		final JavascriptExecutor js = (JavascriptExecutor) this.driver;
-//		for (int i = 0; i <= x; i = i + 50) {
-//			js.executeScript("scroll(" + i + ",0)");
-//		}
-//		for (int j = 0; j <= y; j = j + 50) {
-//			js.executeScript("scroll(0," + j + ")");
-//		}
-//	}
-
-	protected JavascriptExecutor highlightElementPermanently(final WebElement element) {
-		final JavascriptExecutor js = (JavascriptExecutor) this.driver;
-		js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", element);
-		return js;
-	}
-
-//	protected void highlightElement(final WebElement element) {
-//		final String originalStyle = element.getAttribute("style");
-//		final JavascriptExecutor js = highlightElementPermanently(element);
-//		TestUtils.sleep(3000);
-//		js.executeScript("arguments[0].setAttribute('style', '" + originalStyle + "');", element);
-//	}
-//
-//	public void zoomPlus() {
-//		Actions actions = new Actions(this.driver);
-//		actions.keyDown(Keys.CONTROL).sendKeys(Keys.ADD).perform();
-//		actions = new Actions(this.driver);
-//		actions.keyUp(Keys.CONTROL).perform();
-//	}
-//
-//	public void zoomMinus() {
-//		Actions actions = new Actions(this.driver);
-//		actions.keyDown(Keys.CONTROL).sendKeys(Keys.SUBTRACT).perform();
-//		actions = new Actions(this.driver);
-//		actions.keyUp(Keys.CONTROL).perform();
-//	}
 
 	public void takeScreenshot(final String path) {
 		final File scrFile = ((TakesScreenshot) this.driver).getScreenshotAs(OutputType.FILE);

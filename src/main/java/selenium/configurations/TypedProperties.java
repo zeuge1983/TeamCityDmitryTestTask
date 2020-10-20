@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import static java.lang.Boolean.parseBoolean;
-import static java.lang.Integer.parseInt;
-
 /**
  * provides type-safe access to properties.
  */
@@ -25,12 +22,4 @@ public class TypedProperties {
 	public String getValue(final String key) {
 		return properties.getProperty(key);
 	}
-
-//	public boolean getBoolean(final String key) {
-//		return parseBoolean(getValue(key));
-//	}
-//
-//	public int getInt(final String key) {
-//		return parseInt(getValue(key));
-//	}
 }
