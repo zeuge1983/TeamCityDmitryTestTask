@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import selenium.configurations.TypedProperties;
@@ -25,18 +26,19 @@ public abstract class SeleniumFunctions {
 	private static final int ELEMENT_WAIT_TIMEOUT_IN_SECONDS = 5;
 	private static final int SHORT_WAITING_TIME_FOR_ELEMENTS_DISPLAY_MILLIS = 200;
 	private static final int PAGE_WAIT_TIMEOUT_IN_SECONDS = 60;
+	private static final int WEB_WAIT_TIMEOUT = 6;
 
-	TypedProperties testData = new TypedProperties("/test_data.properties");
+//	TypedProperties testData = new TypedProperties("/test_data.properties");
+//
+//	protected String getTestData(String key) {
+//		return testData.getValue(key);
+//	}
 
-	protected String getTestData(String key) {
-		return testData.getValue(key);
-	}
-
-	protected boolean isWebElementDisplayedInQuickCheck(final WebElement element) {
+	protected boolean isWebElementDisplayedIn(final WebElement element) {
 		boolean isElementDisplayed;
 		try {
 			WebDriverWait wait = new WebDriverWait(
-					driver, 0, SHORT_WAITING_TIME_FOR_ELEMENTS_DISPLAY_MILLIS
+					driver, WEB_WAIT_TIMEOUT, SHORT_WAITING_TIME_FOR_ELEMENTS_DISPLAY_MILLIS
 			);
 			wait.until(ExpectedConditions.visibilityOf(element));
 			isElementDisplayed = true;
@@ -44,6 +46,16 @@ public abstract class SeleniumFunctions {
 			isElementDisplayed = false;
 		}
 		return isElementDisplayed;
+	}
+
+	public void waitForLoad() {
+		ExpectedCondition<Boolean> pageLoadCondition = new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver driver) {
+				return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+			}
+		};
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(pageLoadCondition);
 	}
 
 	protected boolean isElementPresent(final By by) {
@@ -163,28 +175,8 @@ public abstract class SeleniumFunctions {
 		dragAndDrop.perform();
 	}
 
-	public void switchWindow(final String url) {
-		TestUtils.sleep(2000);
-		String currentHandle = null;
-		final Set<String> handles = this.driver.getWindowHandles();
-		if (handles.size() > 1) {
-			currentHandle = this.driver.getWindowHandle();
-		}
-		if (currentHandle != null) {
-			for (final String handle : handles) {
-				this.driver.switchTo().window(handle);
-				if (this.driver.getCurrentUrl().contains(url) && !currentHandle.equals(handle)) {
-					break;
-				}
-			}
-		} else {
-			for (final String handle : handles) {
-				this.driver.switchTo().window(handle);
-				if (this.driver.getCurrentUrl().contains(url)) {
-					break;
-				}
-			}
-		}
+	protected boolean checkIfUrlContainsString(String string) {
+		return driver.getCurrentUrl().contains(string);
 	}
 
 	protected Point getElementPosition(final WebElement element) {
@@ -233,8 +225,11 @@ public abstract class SeleniumFunctions {
 	}
 
 	public void acceptAlert() {
+		String mainWindow = driver.getWindowHandle();
         final Alert alert = this.driver.switchTo().alert();
         alert.accept();
+		//switch to main window
+		driver.switchTo().window(mainWindow);
 	}
 
 	public void dismissAlert() {

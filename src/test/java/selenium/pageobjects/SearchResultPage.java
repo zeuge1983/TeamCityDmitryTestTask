@@ -42,10 +42,6 @@ public class SearchResultPage extends Pages {
 		}
 	}
 
-	public String getExpectedResult(){
-		return getTestData("search.result");
-	}
-
 	public List<String> getAccountNames() {
 		waitForElement(userList);
 

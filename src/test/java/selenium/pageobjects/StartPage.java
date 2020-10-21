@@ -50,9 +50,9 @@ public class StartPage extends Pages {
 
 	@Step("Quick check of Login page")
 	public void checkThatLoginPageIsDisplayed() {
-		assertTrue(isWebElementDisplayedInQuickCheck(pageHeader), "Login page header is not shown");
-		assertTrue(isWebElementDisplayedInQuickCheck(rememberMeCheckBox), "Remember me check box is not shown");
-		assertTrue(isWebElementDisplayedInQuickCheck(resetPasswordLink), "Reset password is not shown");
+		assertTrue(isWebElementDisplayedIn(pageHeader), "Login page header is not shown");
+		assertTrue(isWebElementDisplayedIn(rememberMeCheckBox), "Remember me check box is not shown");
+		assertTrue(isWebElementDisplayedIn(resetPasswordLink), "Reset password is not shown");
 	}
 
 	public void open(){

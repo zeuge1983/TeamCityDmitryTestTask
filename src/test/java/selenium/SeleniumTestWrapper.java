@@ -18,7 +18,6 @@ import static org.junit.Assume.assumeTrue;
 public abstract class SeleniumTestWrapper {
 
 	// Config
-//	protected static final TestConfig testConfig = new TestConfig();
 	private final WebDriverConfig webDriverConfig = new WebDriverConfig();
 	protected final WebDriverProvider webDriverProvider = new WebDriverProvider(this.webDriverConfig);
 
@@ -43,11 +42,6 @@ public abstract class SeleniumTestWrapper {
 		if (cookies != null) {
 			webDriverProvider.disableCookies(true);
 		}
-	}
-
-	@Before
-	public void browserDimension(){
-		getDriver().manage().window().maximize();
 	}
 
 	@After

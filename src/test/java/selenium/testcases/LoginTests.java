@@ -3,21 +3,22 @@ package selenium.testcases;
 import io.qameta.allure.*;
 import listener.RetryRule;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.support.PageFactory;
 import selenium.SeleniumTestWrapper;
+import selenium.pageobjects.HomePage;
 import selenium.pageobjects.StartPage;
 
 import static selenium.configurations.User.ADMIN_USER;
 import static utils.TestUtils.sleep;
 
-@Epic("Test epic name")
-@Feature("Feature description")
-public class LoginPageTest extends SeleniumTestWrapper {
+@Epic("Login tests")
+public class LoginTests extends SeleniumTestWrapper {
 
     private StartPage startPage = PageFactory.initElements(getDriver(), StartPage.class);
-//    private LoginPage loginPage  = PageFactory.initElements(getDriver(), LoginPage.class);
+    private HomePage homePage = PageFactory.initElements(getDriver(), HomePage.class);
 
     @Before
     public void setup() {
@@ -26,15 +27,17 @@ public class LoginPageTest extends SeleniumTestWrapper {
 
     //Set retry count argument
     @Rule
-    public RetryRule retryRule = new RetryRule(1);
+    public RetryRule retryRule = new RetryRule(2);
 
     @Test
-    @Story("Story description")
-    @Description("Some detailed test description")
+    @Feature("Login happy path test")
+    @Description("Testing of login with correct email and password")
     @TmsLink("123123")
-    public void checkSomeValueFromCertainCookie() {
+    public void loginLogoutTest() {
         startPage.checkThatLoginPageIsDisplayed();
         startPage.logIn(ADMIN_USER.getUserName(), ADMIN_USER.getPassword());
-        sleep(5000);
+        homePage.checkThatHomePageIsDisplayed();
+        homePage.executeLogoutAction();
+        startPage.checkThatLoginPageIsDisplayed();
     }
 }
