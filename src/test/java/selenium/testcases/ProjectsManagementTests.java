@@ -6,6 +6,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.TmsLink;
 import listener.RetryRule;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.support.PageFactory;
@@ -15,11 +16,9 @@ import selenium.pageobjects.HomePage;
 import selenium.pageobjects.ProjectSettingsPage;
 import selenium.pageobjects.StartPage;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static selenium.configurations.User.ADMIN_USER;
 import static selenium.configurations.ManualProject.NEW_MANUAL_PROJECT_DATA;
-import static utils.TestUtils.sleep;
 
 @Epic("Projects management tests")
 public class ProjectsManagementTests extends SeleniumTestWrapper {

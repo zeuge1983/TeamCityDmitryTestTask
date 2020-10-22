@@ -30,10 +30,6 @@ public class WebDriverProvider extends TestWatcher {
         webDriverBuilder.disableCookies(cookies);
     }
 
-    public boolean existsDriver() {
-        return driver != null;
-    }
-
     @Override
     protected void starting(final Description description) {
         String methodName = description.getClassName() + "." + description.getMethodName();

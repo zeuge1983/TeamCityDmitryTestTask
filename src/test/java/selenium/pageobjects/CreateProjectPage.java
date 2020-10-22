@@ -67,11 +67,11 @@ public class CreateProjectPage extends Pages {
         }
     }
 
-    @Step("Quick check of Home page when manual project creation chosen")
+    @Step("Quick check of Home page when manual project creation started")
     public void checkHomePageForManualProjectIsDisplayed() {
-        assertTrue(isWebElementDisplayedIn(manualProjectName), "Create project header is not shown");
-        assertTrue(isWebElementDisplayedIn(manualProjectId), "Projects button is not shown");
-        assertTrue(isWebElementDisplayedIn(manualProjectDescription), "Administration link is not shown");
+        assertTrue(isWebElementDisplayedIn(manualProjectName), "Project name is not shown");
+        assertTrue(isWebElementDisplayedIn(manualProjectId), "Projects id is not shown");
+        assertTrue(isWebElementDisplayedIn(manualProjectDescription), "Project description is not shown");
         assertTrue(isWebElementDisplayedIn(createManualProjectButton), "Create manual project button is not shown");
         assertTrue(getAttributeFromCreateProjectButton(createManuallyButton), "Manual is not selected");
     }

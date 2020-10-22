@@ -35,6 +35,9 @@ public class HomePage extends Pages {
     @FindBy(xpath = "//a[text()='Log out']")
     WebElement logoutButton;
 
+    @FindBy(xpath = "//a[text()='My Settings & Tools']")
+    WebElement settingsPageButton;
+
     @FindBy(xpath = "//*[text()='Create project']")
     WebElement createNewProjectButton;
 
@@ -55,8 +58,8 @@ public class HomePage extends Pages {
     }
 
     @Step("Check if showing username is correct '{userName}'")
-    public void isUserNameCorrect(String currentUserName, String expectedUserName) {
-        assertEquals(driver.findElement(By.xpath("//a[text()='" + currentUserName + "']")).getText(), expectedUserName);
+    public void verifyUserAccountName(String currentUserName) {
+        assertTrue(isElementPresent(driver.findElement(By.xpath("//a[text()='" + currentUserName + "']"))));
     }
 
     @Step("Logout action")
@@ -64,6 +67,13 @@ public class HomePage extends Pages {
         moveToElement(toggle);
         waitForElement(logoutButton, 3);
         logoutButton.click();
+    }
+
+    @Step("Entering user Settings page action")
+    public void enterUserSettingsPage() {
+        moveToElement(toggle);
+        waitForElement(settingsPageButton, 3);
+        settingsPageButton.click();
     }
 
     public void clickCreateNewProjectButton() {
